@@ -15,7 +15,8 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+    @Autowired
+    DataSource dataSource;
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.formLogin()
@@ -34,8 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/inicio");
     }
 
-    @Autowired
-    DataSource dataSource;
+
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
