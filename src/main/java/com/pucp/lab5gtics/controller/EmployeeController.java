@@ -61,8 +61,17 @@ public class EmployeeController {
     }
 
     //Nuevo Empleado
+    @GetMapping("/nuevocrear")
+    public String crearEmpleado() {
+        return "employee/nuevo";
+    }
     public String newEmployee(Model model) {
         //        COMPLETAR
+
+
+
+
+
         return "XXXXXX";
     }
 }
