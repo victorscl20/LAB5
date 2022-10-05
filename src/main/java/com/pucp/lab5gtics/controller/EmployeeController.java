@@ -1,6 +1,7 @@
 package com.pucp.lab5gtics.controller;
 
 import com.pucp.lab5gtics.entity.EmployeesEntity;
+import com.pucp.lab5gtics.repository.DepartmentRepository;
 import com.pucp.lab5gtics.repository.EmployeeRepository;
 import com.pucp.lab5gtics.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
 
     @Autowired
     EmployeeRepository employeeRepository;
+    @Autowired
+    DepartmentRepository departmentRepository;
+
+    @Autowired
+    JobRepository jobRepository;
 
     @Autowired
     JobRepository jobRepository;
@@ -40,9 +48,18 @@ public class EmployeeController {
 
     //Editar Empleado
     //@...Mapping("")
-    public String informEmployee(  ) {
-        //        COMPLETAR
-        return "XXXXXX";
+    @GetMapping("/edit")
+    public String informEmployee( Model model, @RequestParam("id") int id ) {
+        Optional<EmployeesEntity> optional = employeeRepository.findById(id);
+        if (optional.isPresent()) {
+            model.addAttribute("employee", optional.get());
+            model.addAttribute("listadepartament", departmentRepository.findAll());
+            model.addAttribute("listaTrabajo",jobRepository.findAll());
+
+            return "employee/information";
+        } else {
+            return "redirect:/employee";
+        }
     }
 
     //Guardar Empleado
