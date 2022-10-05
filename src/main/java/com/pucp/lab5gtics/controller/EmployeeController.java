@@ -48,6 +48,17 @@ public class EmployeeController {
         employeeRepository.save(employeesEntity);
         return "redirect:/employee";
     }
+    @GetMapping("borrar")
+    public String deleteEmployee(RedirectAttributes attr,Model model, @RequestParam("id") Integer id){
+        try{
+        employeeRepository.deleteById(id);
+        attr.addFlashAttribute("msgExitoso","El empleado ha sido eliminado");
+        }
+        catch (Exception e){
+            attr.addFlashAttribute("msgError","Este empleado no puede ser eliminado");
+        }
+        return "redirect:/employee";
+    }
 
     //Nuevo Empleado
     public String newEmployee(Model model) {
