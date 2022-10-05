@@ -61,8 +61,9 @@ public class EmployeeController {
     }
 
     //Nuevo Empleado
+    @GetMapping("nuevo")
     public String newEmployee(Model model) {
-        //        COMPLETAR
-        return "XXXXXX";
+
+        return "employee/nuevo";
     }
 }
