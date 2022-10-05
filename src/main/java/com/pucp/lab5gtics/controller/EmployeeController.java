@@ -2,6 +2,7 @@ package com.pucp.lab5gtics.controller;
 
 import com.pucp.lab5gtics.entity.EmployeesEntity;
 import com.pucp.lab5gtics.repository.EmployeeRepository;
+import com.pucp.lab5gtics.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,9 @@ public class EmployeeController {
 
     @Autowired
     EmployeeRepository employeeRepository;
+
+    @Autowired
+    JobRepository jobRepository;
 
     @GetMapping({"lista", ""})
     public String listEmployee(Model model,
@@ -63,7 +67,7 @@ public class EmployeeController {
     //Nuevo Empleado
     @GetMapping("nuevo")
     public String newEmployee(Model model) {
-
+        model.addAttribute("listaTrabajos",jobRepository.findAll());
         return "employee/nuevo";
     }
 }
