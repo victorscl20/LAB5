@@ -1,5 +1,7 @@
 package com.pucp.lab5gtics.entity;
 
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -30,9 +32,9 @@ public class EmployeesEntity {
     @Basic
     @Column(name = "hire_date")
     private Timestamp hireDate;
-    @Basic
-    @Column(name = "job_id")
-    private String jobId;
+    @ManyToOne
+    @JoinColumn (name = "job_id")
+    private JobsEntity jobId;
     @Basic
     @Column(name = "salary")
     private BigDecimal salary;
@@ -105,11 +107,11 @@ public class EmployeesEntity {
         this.hireDate = hireDate;
     }
 
-    public String getJobId() {
+    public JobsEntity getJobId() {
         return jobId;
     }
 
-    public void setJobId(String jobId) {
+    public void setJobId(JobsEntity jobId) {
         this.jobId = jobId;
     }
 
