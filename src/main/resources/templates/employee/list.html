@@ -57,20 +57,20 @@
           </thead>
           <tbody>
 
-          <tr>
-            <td>1</td>
-            <td>Nombre</td>
-            <td>Apellido</td>
-            <td>correo</td>
-            <td>salario</td>
+          <tr th:each="employee : ${listaEmployee}">
+            <td th:text="${employee.getEmployeeId()}">#</td>
+            <td th:text="${employee.getFirstName()}">Nombre</td>
+            <td th:text="${employee.getLastName()}">Apellido</td>
+            <td th:text="${employee.getEmail()}">correo</td>
+            <td th:text="${employee.getSalary()}">salario</td>
             <td><a class="btn btn-outline-info" href="..." data-toggle="tooltip" data-placement="bottom" title="Editar"></a></td>
             <td><a class="btn btn-outline-danger" href="..." data-toggle="tooltip" data-placement="bottom" title="Borrar"></a></td>
           </tr>
 
           </tbody>
         </table>
-        <script src="<spring:url value="/resources/jquery/jquery-3.3.1.min.js" />"></script>
-        <script src="<spring:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
+        <script src="<spring:url value='/resources/jquery/jquery-3.3.1.min.js' />"></script>
+        <script src="<spring:url value='/resources/bootstrap/js/bootstrap.min.js' />"></script>
       </div>
 </body>
 </html>
